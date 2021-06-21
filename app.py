@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask( __name__)
 
@@ -19,6 +19,14 @@ def getProduct(product_name):
     if (len(productsFound) > 0):
         return jsonify({'product': productsFound[0]})
     return "product not found"
+
+@app.route('/products', methods=['POST'] )
+def addProduct():
+     print(request.json)
+     return "received"
+   
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
